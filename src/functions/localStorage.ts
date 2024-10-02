@@ -1,9 +1,9 @@
-export function getFromLocalStorage<T>(key: string): T | null {
+export function getFromLocalStorage<T>(key: string): T | void {
   try {
     const item = localStorage.getItem(key);
     return item ? JSON.parse(item) : null;
-  } catch (error) {
-    return null;
+  } catch {
+    return;
   }
 }
 
