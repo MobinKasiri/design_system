@@ -17,7 +17,7 @@ export const MuiButton: MuiButtonOptions = {
     size: "medium",
   },
   styleOverrides: {
-    root: { borderRadius: "8px", whiteSpace: "nowrap" },
+    root: { borderRadius: "8px", whiteSpace: "nowrap", dir: "ltr" },
     sizeLarge: {
       padding: "10px 20px",
       fontSize: "16px",

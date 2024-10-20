@@ -15,6 +15,15 @@ export type categoryLink = {
   url: string;
 };
 
+export interface StaticImageData {
+  src: string;
+  height: number;
+  width: number;
+  blurDataURL?: string;
+  blurWidth?: number;
+  blurHeight?: number;
+}
+
 export interface cardProps extends CardProps {
   id?: string;
   title?: string;
