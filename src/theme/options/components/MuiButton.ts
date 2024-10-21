@@ -15,9 +15,10 @@ export const MuiButton: MuiButtonOptions = {
   defaultProps: {
     variant: "contained",
     size: "medium",
+    dir: "ltr",
   },
   styleOverrides: {
-    root: { borderRadius: "8px", whiteSpace: "nowrap", dir: "ltr" },
+    root: { borderRadius: "8px", whiteSpace: "nowrap" },
     sizeLarge: {
       padding: "10px 20px",
       fontSize: "16px",
