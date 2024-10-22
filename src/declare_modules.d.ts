@@ -17,6 +17,8 @@ declare module "@mui/material/styles" {
     gray?: PaletteColorOptions;
     pink?: PaletteColorOptions;
   }
+
+  type Shadows = string[];
 }
 declare module "@mui/material/Button" {
   interface ButtonPropsColorOverrides {
