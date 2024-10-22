@@ -1,9 +1,6 @@
-import { SimplePaletteColorOptions } from "@mui/material";
-import { ColorPartial } from "@mui/material/styles/createPalette";
+import { PaletteColor } from "@mui/material";
 
-type paletteColorOptions = SimplePaletteColorOptions & ColorPartial;
-
-export const primary: paletteColorOptions = {
+export const primary: Partial<PaletteColor> = {
   main: "#E66D24",
   100: "#F7C39E",
   200: "#F5A46D",
@@ -14,7 +11,7 @@ export const primary: paletteColorOptions = {
   700: "#5E2D0F",
 };
 
-export const secondary: paletteColorOptions = {
+export const secondary: Partial<PaletteColor> = {
   main: "#183A67",
   100: "#A2B4CC",
   200: "#7390B2",
@@ -25,7 +22,7 @@ export const secondary: paletteColorOptions = {
   700: "#0C1C33",
 };
 
-export const gray: paletteColorOptions = {
+export const gray: Partial<PaletteColor> = {
   main: "#888888",
   100: "#F2F2F2",
   200: "#E1E1E1",
@@ -36,7 +33,7 @@ export const gray: paletteColorOptions = {
   700: "#414141",
 };
 
-export const pink: paletteColorOptions = {
+export const pink: Partial<PaletteColor> = {
   main: "#AD2474",
   50: "#FAE5F1",
   100: "#F4BFDD",
@@ -51,18 +48,18 @@ export const pink: paletteColorOptions = {
   contrastText: "#fff",
 };
 
-export const error: paletteColorOptions = {
+export const error: Partial<PaletteColor> = {
   main: "#D12D2E",
 };
 
-export const warning: paletteColorOptions = {
+export const warning: Partial<PaletteColor> = {
   main: "#EE6A20",
 };
 
-export const info: paletteColorOptions = {
+export const info: Partial<PaletteColor> = {
   main: "#2A68B1",
 };
 
-export const success: paletteColorOptions = {
+export const success: Partial<PaletteColor> = {
   main: "#317D3C",
 };
