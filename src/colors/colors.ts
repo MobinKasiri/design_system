@@ -2,6 +2,7 @@ import { PaletteColor } from "@mui/material";
 
 export const primary: Partial<PaletteColor> = {
   main: "#E66D24",
+  50: "#FCE9D9",
   100: "#F7C39E",
   200: "#F5A46D",
   300: "#F2863E",
@@ -31,6 +32,8 @@ export const gray: Partial<PaletteColor> = {
   500: "#888888",
   600: "#5D5D5D",
   700: "#414141",
+  800: "#242424",
+  900: "#131313",
 };
 
 export const pink: Partial<PaletteColor> = {
