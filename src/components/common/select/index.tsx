@@ -2,10 +2,9 @@ import { CacheProvider } from "@emotion/react";
 import {
   FormControl,
   FormControlProps,
-  InputLabel,
   MenuItem,
-  Select as MuiSelect,
-  SelectProps,
+  TextFieldProps,
+  TextField,
 } from "@mui/material";
 import { cacheRtl } from "../../../theme/rtl";
 import { fontName } from "../../../theme/options/typography";
@@ -13,32 +12,19 @@ import { ThemeRegistry } from "../../../provider";
 
 interface FilterArray {
   array: any[];
-  labelId: string;
   label: string;
   onSelectChange: (...arg: any) => void;
 }
-type mySelectProps = SelectProps & FormControlProps & FilterArray;
+type mySelectProps = TextFieldProps & FormControlProps & FilterArray;
 
-const Select = ({
-  label,
-  array,
-  labelId,
-  onSelectChange,
-  ...rest
-}: mySelectProps) => {
+const Select = ({ label, array, onSelectChange, ...rest }: mySelectProps) => {
   return (
     <CacheProvider value={cacheRtl}>
       <ThemeRegistry>
         <FormControl fullWidth>
-          <InputLabel
+          <TextField
+            select
             sx={{ fontFamily: fontName }}
-            id={labelId ?? "simple-label-id"}
-          >
-            {label}
-          </InputLabel>
-          <MuiSelect
-            sx={{ fontFamily: fontName }}
-            labelId={labelId ?? "simple-label-id"}
             label={label}
             onChange={onSelectChange}
             {...rest}
@@ -56,7 +42,7 @@ const Select = ({
                 );
               } else return null;
             })}
-          </MuiSelect>
+          </TextField>
         </FormControl>
       </ThemeRegistry>
     </CacheProvider>
