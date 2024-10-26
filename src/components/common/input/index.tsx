@@ -7,8 +7,9 @@ import {
   Box,
 } from "@mui/material";
 import React, { useState } from "react";
-import { fontName } from "../../../theme/options/typography";
 import { ThemeRegistry } from "../../../provider";
+import mergeObjectFunction from "../../../functions/mergeObjectsFunction";
+import { MuiTextField } from "../../../theme/options/components/MuiTextField";
 
 interface CustomTextFieldProps {
   stateSet?: React.Dispatch<React.SetStateAction<any>>;
@@ -39,8 +40,6 @@ const Input: React.FC<MyTextFieldProps> = ({
   stateSet,
   InputProps,
   type,
-  sx,
-  InputLabelProps,
   ...rest
 }) => {
   const [showPassword, showPasswordSet] = useState(false);
@@ -50,6 +49,11 @@ const Input: React.FC<MyTextFieldProps> = ({
       stateSet(e.target.value);
     }
   };
+
+  const mergedInputProps = mergeObjectFunction(
+    MuiTextField.defaultProps?.InputProps ?? {},
+    InputProps ?? {}
+  );
 
   return (
     <CacheProvider value={cacheRtl}>
@@ -65,19 +69,7 @@ const Input: React.FC<MyTextFieldProps> = ({
                   stateSet={showPasswordSet}
                 />
               ) : null,
-            ...InputProps,
-            style: {
-              borderRadius: 8,
-              fontFamily: fontName,
-              ...InputProps?.style,
-            },
-          }}
-          InputLabelProps={{
-            style: { fontFamily: fontName, ...InputLabelProps?.style },
-          }}
-          sx={{
-            width: 1,
-            ...sx,
+            ...mergedInputProps,
           }}
           type={
             type == "password" ? (showPassword ? "text" : "password") : type

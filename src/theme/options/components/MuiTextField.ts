@@ -11,4 +11,10 @@ interface MuiTextFieldProps {
   variants?: ComponentsVariants<Theme>["MuiTextField"];
 }
 
-export const MuiTextField: MuiTextFieldProps = {};
+export const MuiTextField: MuiTextFieldProps = {
+  defaultProps: {
+    InputProps: {
+      sx: { borderRadius: 2, width: 1 },
+    },
+  },
+};
