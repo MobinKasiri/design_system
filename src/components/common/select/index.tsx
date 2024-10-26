@@ -5,6 +5,7 @@ import {
   MenuItem,
   TextFieldProps,
   TextField,
+  SelectProps,
 } from "@mui/material";
 import { cacheRtl } from "../../../theme/rtl";
 import { fontName } from "../../../theme/options/typography";
@@ -15,7 +16,10 @@ interface FilterArray {
   label: string;
   onSelectChange: (...arg: any) => void;
 }
-type mySelectProps = TextFieldProps & FormControlProps & FilterArray;
+type mySelectProps = TextFieldProps &
+  SelectProps &
+  FormControlProps &
+  FilterArray;
 
 const Select = ({ label, array, onSelectChange, ...rest }: mySelectProps) => {
   return (
