@@ -12,6 +12,7 @@ import { customShadows } from "./options/customShadows";
 import { MuiMenuItem } from "./options/components/MuiMenuItem";
 import { MuiTextField } from "./options/components/MuiTextField";
 import paletteOptions from "./paletteOptions";
+import { MuiMenu } from "./options/components/MuiMenu";
 
 const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
   const theme = createTheme({
@@ -32,6 +33,7 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
       MuiContainer: MuiContainer(theme),
       MuiMenuItem,
       MuiTextField,
+      MuiMenu: MuiMenu(theme),
     },
     shadows: customShadows(theme),
   };

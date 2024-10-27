@@ -1,4 +1,9 @@
-import { ComponentsOverrides, ComponentsProps, ComponentsVariants, Theme } from "@mui/material";
+import {
+  ComponentsOverrides,
+  ComponentsProps,
+  ComponentsVariants,
+  Theme,
+} from "@mui/material";
 
 interface MuiMenuOptions {
   defaultProps?: ComponentsProps["MuiMenu"];
@@ -9,14 +14,8 @@ interface MuiMenuOptions {
 export const MuiMenu = (theme: Theme): MuiMenuOptions => ({
   styleOverrides: {
     paper: {
-      boxShadow: theme?.shadows?.[1],
-      borderRadius: 12,
-    },
-    list: {
-      padding: 16,
-    },
-    root: {
-      background: "rgba(0,0,0,0.1)",
+      boxShadow: theme?.shadows?.[5],
+      borderRadius: 2,
     },
   },
 });
