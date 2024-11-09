@@ -110,35 +110,24 @@ const SingleRouteItem = ({ route, navigate, pathname }: SidebarItemProps) => {
 
 const SideBar = ({ routes, navigate, pathname }: SidebarProps) => {
   return (
-    <Box
-      sx={(theme) => ({
-        position: "fixed",
-        borderLeft: "1px solid",
-        width: "240px",
-        borderColor: theme.palette.grey["300"],
-        height: "100dvh",
-        mt: 8,
-      })}
+    <List
+      disablePadding
+      dense={false}
+      sx={{ direction: "rtl", position: "sticky", top: "64px" }}
+      component="nav"
+      aria-labelledby="nested-list-subheader"
     >
-      <List
-        disablePadding
-        dense={false}
-        sx={{ direction: "rtl", position: "sticky", top: "64px" }}
-        component="nav"
-        aria-labelledby="nested-list-subheader"
-      >
-        {routes.map((singleRoute) => (
-          <div key={singleRoute.title}>
-            <SingleRouteItem
-              navigate={navigate}
-              pathname={pathname}
-              route={singleRoute}
-            />
-            {singleRoute.title && <Divider />}
-          </div>
-        ))}
-      </List>
-    </Box>
+      {routes.map((singleRoute) => (
+        <div key={singleRoute.title}>
+          <SingleRouteItem
+            navigate={navigate}
+            pathname={pathname}
+            route={singleRoute}
+          />
+          {singleRoute.title && <Divider />}
+        </div>
+      ))}
+    </List>
   );
 };
 
