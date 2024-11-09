@@ -24,7 +24,17 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    "typeRoots": ["./dist/index.d.ts", "node_modules/@types"]
+    "typeRoots": ["./dist/index.d.ts", "node_modules/@types"],
+    "baseUrl": ".",
+    "paths": {
+      "design_system/hooks": ["./src/hooks"],
+      "design_system/components": ["./src/components"],
+      "design_system/theme": ["./src/theme"],
+      "design_system/functions": ["./src/functions"],
+      "design_system/patterns": ["./src/patterns"],
+      "design_system/store": ["./src/store"],
+      "design_system/provider": ["./src/provider"]
+    }
   },
   "include": ["src", "**/index.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
