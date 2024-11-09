@@ -9,8 +9,20 @@ import {
 } from "@mui/material";
 
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import GoogleIcon from "../components/common/googleIcon";
+
+interface CommonProps {
+  navigate: (href: string) => void;
+  pathname: string;
+}
+
+interface SidebarItemProps extends CommonProps {
+  route: SidebarItem;
+}
+
+interface SidebarProps extends CommonProps {
+  routes: SidebarItem[];
+}
 
 interface SidebarItem {
   title: string;
@@ -19,41 +31,9 @@ interface SidebarItem {
   children?: SidebarItem[];
 }
 
-const SideBar = ({ routes }: { routes: SidebarItem[] }) => {
-  return (
-    <Box
-      sx={(theme) => ({
-        position: "fixed",
-        borderLeft: "1px solid",
-        width: "240px",
-        borderColor: theme.palette.grey["300"],
-        height: "100dvh",
-        mt: 8,
-      })}
-    >
-      <List
-        disablePadding
-        dense={false}
-        sx={{ direction: "rtl", position: "sticky", top: "64px" }}
-        component="nav"
-        aria-labelledby="nested-list-subheader"
-      >
-        {routes.map((singleRoute) => (
-          <div key={singleRoute.title}>
-            <SingleRouteItem route={singleRoute} />
-            {singleRoute.title && <Divider />}
-          </div>
-        ))}
-      </List>
-    </Box>
-  );
-};
-
-export default SideBar;
-const SingleRouteItem = ({ route }: { route: SidebarItem }) => {
-  const navigate = useNavigate();
+const SingleRouteItem = ({ route, navigate, pathname }: SidebarItemProps) => {
   const [open, setOpen] = React.useState(false);
-  const { pathname } = useLocation();
+
   const handleClick = () => {
     if (Array.isArray(route.children)) {
       setOpen(!open);
@@ -112,7 +92,11 @@ const SingleRouteItem = ({ route }: { route: SidebarItem }) => {
                       paddingRight: 2,
                     }}
                   >
-                    <SingleRouteItem route={anotherRoute} />
+                    <SingleRouteItem
+                      navigate={navigate}
+                      pathname={pathname}
+                      route={anotherRoute}
+                    />
                   </Box>
                 );
               })}
@@ -123,3 +107,39 @@ const SingleRouteItem = ({ route }: { route: SidebarItem }) => {
     </>
   );
 };
+
+const SideBar = ({ routes, navigate, pathname }: SidebarProps) => {
+  return (
+    <Box
+      sx={(theme) => ({
+        position: "fixed",
+        borderLeft: "1px solid",
+        width: "240px",
+        borderColor: theme.palette.grey["300"],
+        height: "100dvh",
+        mt: 8,
+      })}
+    >
+      <List
+        disablePadding
+        dense={false}
+        sx={{ direction: "rtl", position: "sticky", top: "64px" }}
+        component="nav"
+        aria-labelledby="nested-list-subheader"
+      >
+        {routes.map((singleRoute) => (
+          <div key={singleRoute.title}>
+            <SingleRouteItem
+              navigate={navigate}
+              pathname={pathname}
+              route={singleRoute}
+            />
+            {singleRoute.title && <Divider />}
+          </div>
+        ))}
+      </List>
+    </Box>
+  );
+};
+
+export default SideBar;
