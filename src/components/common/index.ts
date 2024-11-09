@@ -7,6 +7,7 @@ import BreadCrumb from "./breadcrumb";
 import UnderDevelopment from "./underDevelopment";
 import TabBar from "./tabbar";
 import Card from "./card";
+import GoogleIcon from "./googleIcon";
 
 export {
   Input,
@@ -18,4 +19,5 @@ export {
   UnderDevelopment,
   TabBar,
   Card,
+  GoogleIcon,
 };
