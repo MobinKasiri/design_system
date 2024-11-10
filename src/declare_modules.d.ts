@@ -1,4 +1,4 @@
-import { Color, PaletteColorOptions } from "@mui/material";
+import { Color } from "@mui/material";
 import React from "react";
 
 declare module "@mui/material/styles" {
@@ -10,12 +10,12 @@ declare module "@mui/material/styles" {
   }
 
   interface Palette {
-    gray: PaletteColorOptions;
-    pink: PaletteColorOptions;
+    gray: Partial<PaletteColor>;
+    pink: Partial<PaletteColor>;
   }
   interface PaletteOptions {
-    gray?: PaletteColorOptions;
-    pink?: PaletteColorOptions;
+    gray?: Partial<PaletteColor>;
+    pink?: Partial<PaletteColor>;
   }
 }
 declare module "@mui/material/Button" {

@@ -1,8 +1,4 @@
-import {
-  PaletteColorOptions,
-  PaletteMode,
-  PaletteOptions,
-} from "@mui/material";
+import { PaletteMode, PaletteOptions } from "@mui/material";
 import {
   error,
   gray,
@@ -13,23 +9,6 @@ import {
   success,
   warning,
 } from "../colors/colors";
-
-declare module "@mui/material/styles" {
-  interface Palette {
-    gray: PaletteColorOptions;
-    pink: PaletteColorOptions;
-  }
-  interface PaletteOptions {
-    gray?: PaletteColorOptions;
-    pink?: PaletteColorOptions;
-  }
-}
-declare module "@mui/material/Button" {
-  interface ButtonPropsColorOverrides {
-    gray: true;
-    pink: true;
-  }
-}
 
 const light: PaletteOptions = {
   primary,
