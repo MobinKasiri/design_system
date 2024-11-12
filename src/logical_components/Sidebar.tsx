@@ -5,6 +5,7 @@ import {
   List,
   ListItem,
   ListItemButton,
+  Skeleton,
   Typography,
 } from "@mui/material";
 import GoogleIcon from "../components/common/googleIcon";
@@ -107,9 +108,9 @@ const SidebarItem = ({ route, navigate, pathname }: SidebarItemProps) => {
       <Collapse in={open} timeout="auto" unmountOnExit>
         {Array.isArray(route.children) ? (
           <List component="div" disablePadding>
-            {route?.children?.map((route) => {
+            {route?.children?.map((route, index) => {
               return (
-                <Box key={route.title}>
+                <Box key={index}>
                   <SidebarItem
                     navigate={navigate}
                     pathname={pathname}
@@ -125,6 +126,30 @@ const SidebarItem = ({ route, navigate, pathname }: SidebarItemProps) => {
   );
 };
 
+const SkeletonItem = () => {
+  return (
+    <Box sx={{ display: "flex", justifyContent: "space-between", width: 1 }}>
+      <Skeleton animation="wave" variant="circular" width={40} height={40} />
+      <Skeleton
+        animation="wave"
+        sx={{ width: "calc(100% - 48px)", borderRadius: 2 }}
+        variant="rectangular"
+        height={36}
+      />
+    </Box>
+  );
+};
+
+const SkeletonComponent = () => {
+  return (
+    <Box sx={{ display: "flex", flexDirection: "column", gap: 2, p: 2.5 }}>
+      {Array.from(Array(10)).map(() => (
+        <SkeletonItem />
+      ))}
+    </Box>
+  );
+};
+
 const SideBar = ({ routes, navigate, pathname }: SidebarProps) => {
   return (
     <List
@@ -134,11 +159,19 @@ const SideBar = ({ routes, navigate, pathname }: SidebarProps) => {
       component="nav"
       aria-labelledby="nested-list-subheader"
     >
-      {routes.map((route) => (
-        <Box key={route.title}>
-          <SidebarItem navigate={navigate} pathname={pathname} route={route} />
-        </Box>
-      ))}
+      {routes?.length ? (
+        routes.map((route) => (
+          <Box key={route.title}>
+            <SidebarItem
+              navigate={navigate}
+              pathname={pathname}
+              route={route}
+            />
+          </Box>
+        ))
+      ) : (
+        <SkeletonComponent />
+      )}
     </List>
   );
 };

@@ -15,7 +15,7 @@ export const MuiMenu = (theme: Theme): MuiMenuOptions => ({
   styleOverrides: {
     paper: {
       boxShadow: theme?.shadows?.[5],
-      borderRadius: 2,
+      borderRadius: 8,
     },
   },
 });
