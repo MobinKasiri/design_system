@@ -9,37 +9,49 @@ import {
   Typography,
 } from "@mui/material";
 import GoogleIcon from "../components/common/googleIcon";
+import { ThemeRegistry } from "../provider";
 
 import React from "react";
 
-interface CommonProps {
-  navigate: (href: string) => void;
+export interface CommonProps {
+  navigate: (url: string) => void;
   pathname: string;
 }
-interface SidebarItem {
-  title: string;
+export interface SidebarItem {
+  title?: string;
   icon?: string;
-  href?: string;
-  children?: SidebarItem[];
+  url?: string;
+  menuChildren?: SidebarItem[];
+  menuOrder?: number;
+  id: number;
 }
 
-interface SidebarItemProps extends CommonProps {
+export interface SidebarItemProps extends CommonProps {
   route: SidebarItem;
 }
 
-interface SidebarProps extends CommonProps {
+export interface SidebarProps extends CommonProps {
   routes: SidebarItem[];
 }
 
 const SidebarItem = ({ route, navigate, pathname }: SidebarItemProps) => {
-  const [open, setOpen] = React.useState(false);
+  const haveIActiveChild = () => {
+    return (
+      route.menuChildren?.[0] &&
+      pathname !== "/" &&
+      JSON.stringify(route.menuChildren).includes(pathname)
+    );
+  };
+
+  const [open, setOpen] = React.useState(haveIActiveChild());
 
   const handleClick = () => {
-    if (Array.isArray(route.children)) {
-      setOpen(!open);
+    if (route.menuChildren?.length) {
+      setOpen((prev) => !prev);
+      return;
     }
-    if (route.href) {
-      navigate(route.href);
+    if (route.url) {
+      navigate(route.url);
     }
   };
 
@@ -49,12 +61,14 @@ const SidebarItem = ({ route, navigate, pathname }: SidebarItemProps) => {
         <ListItemButton
           sx={(theme) => ({
             py: "12px",
-            color: theme.palette.grey["800"],
+            color: theme.palette.gray["800"],
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
             bgcolor:
-              route.href == pathname ? theme.palette.primary["50"] : undefined,
+              route.url == pathname || haveIActiveChild()
+                ? theme.palette.primary["50"]
+                : undefined,
             "&:hover": {
               bgcolor: theme.palette.primary["50"],
             },
@@ -77,20 +91,21 @@ const SidebarItem = ({ route, navigate, pathname }: SidebarItemProps) => {
                 iconName={route.icon}
               />
             ) : null}
-
-            <Typography
-              sx={{
-                display: "flex",
-                fontSize: "1rem",
-                alignItems: "start",
-              }}
-              variant={route?.children ? "body1" : "body2"}
-            >
-              {route.title}
-            </Typography>
+            {route.title ? (
+              <Typography
+                sx={{
+                  display: "flex",
+                  fontSize: "1rem",
+                  alignItems: "start",
+                }}
+                variant={route?.menuChildren ? "body1" : "body2"}
+              >
+                {route.title}
+              </Typography>
+            ) : null}
           </Box>
 
-          {route.children ? (
+          {route.menuChildren?.length ? (
             <GoogleIcon
               iconName="keyboard_arrow_left"
               className="transition-all"
@@ -106,11 +121,11 @@ const SidebarItem = ({ route, navigate, pathname }: SidebarItemProps) => {
       <Divider />
 
       <Collapse in={open} timeout="auto" unmountOnExit>
-        {Array.isArray(route.children) ? (
+        {route.menuChildren?.length ? (
           <List component="div" disablePadding>
-            {route?.children?.map((route, index) => {
+            {route?.menuChildren?.map((route) => {
               return (
-                <Box key={index}>
+                <Box key={route?.id}>
                   <SidebarItem
                     navigate={navigate}
                     pathname={pathname}
@@ -152,27 +167,29 @@ const SkeletonComponent = () => {
 
 const SideBar = ({ routes, navigate, pathname }: SidebarProps) => {
   return (
-    <List
-      disablePadding
-      dense={false}
-      sx={{ direction: "rtl", position: "sticky", top: "64px" }}
-      component="nav"
-      aria-labelledby="nested-list-subheader"
-    >
-      {routes?.length ? (
-        routes.map((route) => (
-          <Box key={route.title}>
-            <SidebarItem
-              navigate={navigate}
-              pathname={pathname}
-              route={route}
-            />
-          </Box>
-        ))
-      ) : (
-        <SkeletonComponent />
-      )}
-    </List>
+    <ThemeRegistry>
+      <List
+        disablePadding
+        dense={false}
+        sx={{ direction: "rtl" }}
+        component="nav"
+        aria-labelledby="nested-list-subheader"
+      >
+        {routes?.length ? (
+          routes.map((route) => (
+            <Box key={route.id}>
+              <SidebarItem
+                navigate={navigate}
+                pathname={pathname}
+                route={route}
+              />
+            </Box>
+          ))
+        ) : (
+          <SkeletonComponent />
+        )}
+      </List>
+    </ThemeRegistry>
   );
 };
 
