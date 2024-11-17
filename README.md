@@ -1,103 +1,90 @@
-# design_system
+# Project Name
 
-## Getting started
+## Overview
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+This project is a React-based web application built with TypeScript and Material-UI. It is designed to be modular, scalable, and maintainable, featuring a responsive UI, custom hooks, and a theme system for consistent styling.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## Features
 
-## Add your files
+- **Responsive Design**: Utilizes Material-UI for a responsive and accessible user interface.
+- **TypeScript**: Provides type safety and improved code maintainability.
+- **Custom Hooks**: Includes custom hooks for handling specific logic.
+- **Theming**: Supports a theme system for consistent styling across the application.
+- **State Management**: Uses Zustand for lightweight state management.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+## Getting Started
 
-```
-cd existing_repo
-git remote add origin http://gitlab.simorgh.local/simorgh/design_system.git
-git branch -M main
-git push -uf origin main
-```
+### Prerequisites
 
-## Integrate with your tools
+- Node.js (version 14 or later)
+- npm or yarn
 
-- [ ] [Set up project integrations](http://gitlab.simorgh.local/simorgh/design_system/-/settings/integrations)
+### Installation
 
-## Collaborate with your team
+1. Clone the repository:
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+   ```bash
+   git clone https://github.com/yourusername/yourproject.git
+   ```
 
-## Test and Deploy
+2. Navigate to the project directory:
 
-Use the built-in continuous integration in GitLab.
+   ```bash
+   cd yourproject
+   ```
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+3. Install the dependencies:
 
----
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-# Editing this README
+### Running the Application
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+To start the development server, run:
 
-## Suggestions for a good README
+The application will be available at `http://localhost:3000`.
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+## Project Structure
 
-## Name
+### `src/`
 
-Choose a self-explaining name for your project.
+- **components/**: Contains reusable UI components.
 
-## Description
+  - **common/**: Shared components like `Breadcrumb`, `TabBar`, and `Card`.
+    - **card/**: Different card components such as `CategoryCard`, `HorizontalCard`, `VerticalCard`, and `IconCard`.
+    - **googleIcon/**: A component for rendering Google icons.
+    - **section/**: Components for section headers and titles.
+    - **underDevelopment/**: A placeholder component indicating a page is under development.
+  - **index.ts**: Exports all common components for easy import.
 
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+- **logical_components/**: Components with more complex logic.
 
-## Badges
+  - **Sidebar.tsx**: Manages the sidebar navigation logic and rendering.
+  - **Menu.tsx**: Handles the dropdown menu logic and rendering.
+  - **index.ts**: Exports logical components and types.
 
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+- **theme/**: Theme configuration and Material-UI component overrides.
 
-## Visuals
+  - **options/**: Contains customizations for Material-UI components like `MuiMenu`, `MuiCard`, and `MuiLink`.
+  - **theme.tsx**: Defines the theme settings, including palette, typography, and component overrides.
 
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+- **functions/**: Utility functions for various operations.
 
-## Installation
+  - **index.ts**: Exports utility functions like `addQueryToUrlFunction` and local storage helpers.
 
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+- **hooks/**: Custom React hooks for handling specific logic.
 
-## Usage
+- **store/**: State management using Zustand.
 
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+- **provider/**: Context providers for theming and other global settings.
 
-## Support
+- **colors/**: Defines color palettes used throughout the application.
 
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+- **declare_modules.d.ts**: TypeScript declaration file for extending Material-UI types.
 
 ## Contributing
 
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-
-Show your appreciation to those who have contributed to the project.
-
-## License
-
-For open source projects, say how it is licensed.
-
-## Project status
-
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Contributions are welcome! Please fork the repository and submit a pull request for any improvements or bug fixes.
