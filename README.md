@@ -1,10 +1,33 @@
 # Design System
 
-## Overview
+## Table of Contents
+
+- [Overview](#overview)
+- [Architecture](#architecture)
+  - [Core Modules](#core-modules)
+  - [UI Components](#-ui-components)
+  - [Development Tools](#-development-tools)
+  - [Architecture Details](#-architecture)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Local Setup](#local-setup)
+  - [Running the Application](#running-the-application)
+- [Project Structure](#project-structure)
+  - [src/ Directory](#src)
+  - [Important Files](#important-files)
+- [TypeScript Declarations](#typescript-declarations)
+  - [Custom Palette Colors](#custom-palette-colors)
+  - [Custom Breakpoints](#custom-breakpoints)
+  - [Extended Typography Variants](#extended-typography-variants)
+- [Creating and Using the Package](#creating-and-using-the-package)
+  - [Creating the Package](#creating-the-package)
+  - [Using the Package](#using-the-package)
+  - [Importing Components](#importing-components)
+- [Contributing](#contributing)
 
 ## Architecture
 
-### Core Modules
+#### Core Modules
 
 ```
 src/
@@ -79,13 +102,11 @@ The application will be available at `http://localhost:3000`.
     - **googleIcon/**: A component for rendering Google icons.
     - **section/**: Components for section headers and titles.
     - **underDevelopment/**: A placeholder component indicating a page is under development.
-  - **index.ts**: Exports all common components for easy import.
 
 - **logical_components/**: Components with more complex logic.
 
   - **Sidebar.tsx**: Manages the sidebar navigation logic and rendering.
   - **Menu.tsx**: Handles the dropdown menu logic and rendering.
-  - **index.ts**: Exports logical components and types.
 
 - **theme/**: Theme configuration and Material-UI component overrides.
 
@@ -141,19 +162,6 @@ The application will be available at `http://localhost:3000`.
       createTheme(getDesignTokens(mode));
     ```
 
-- **`src/declare_modules.d.ts`**: TypeScript declaration file for extending Material-UI types.
-
-  - for example:
-
-    ```typescript:src/declare_modules.d.ts
-    declare module "@mui/material/Button" {
-      interface ButtonPropsColorOverrides {
-        gray: true;
-        pink: true;
-      }
-    }
-    ```
-
 - **`src/index.ts`**: Main entry point for exporting all modules.
 
   - Code Reference:
@@ -167,6 +175,67 @@ The application will be available at `http://localhost:3000`.
     export * from "./provider";
     export * from "./logical_components";
     ```
+
+## TypeScript Declarations
+
+The design system extends Material-UI's default types through declaration files to provide additional customization options:
+
+### Custom Palette Colors
+
+```typescript
+// Added new color options to the palette
+interface Palette {
+  gray: PaletteColor;
+  pink: PaletteColor;
+  yourColor: PaletteColor;
+}
+
+// These colors can be used with buttons
+<Button color="gray">Gray Button</Button>
+<Button color="pink">Pink Button</Button>
+<Button color="yourColor">Your Color Button</Button>
+```
+
+### Custom Breakpoints
+
+The default Material-UI breakpoints (xs, sm, md, lg, xl) have been replaced with more specific breakpoints:
+
+```typescript
+interface BreakpointOverrides {
+  zero: true; // 0px
+  mobileS: true; // mobile small
+  tabletM: true; // tablet medium
+  tabletL: true; // tablet large
+  desktopS: true; // desktop small
+  desktopM: true; // desktop medium
+  desktopL: true; // desktop large
+  desktopXl: true; // desktop extra large
+}
+```
+
+### Extended Typography Variants
+
+Additional typography variants have been added for more precise text styling:
+
+```typescript
+// New Button Typography Variants
+buttonSmall: React.CSSProperties;
+buttonMedium: React.CSSProperties;
+buttonLarge: React.CSSProperties;
+
+// New Text Typography Variants
+subtitle3: React.CSSProperties;
+body3: React.CSSProperties;
+label1: React.CSSProperties;
+label2: React.CSSProperties;
+label3: React.CSSProperties;
+
+// Usage example:
+<Typography variant="buttonSmall">Small Button Text</Typography>
+<Typography variant="label1">Label Text</Typography>
+```
+
+These type declarations ensure full TypeScript support while using custom theme extensions. They provide autocompletion and type checking for the custom properties in your IDE.
 
 ### Creating and Using the Package
 
