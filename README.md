@@ -2,7 +2,6 @@
 
 ## Table of Contents
 
-- [Overview](#overview)
 - [Architecture](#architecture)
   - [Core Modules](#core-modules)
   - [UI Components](#-ui-components)
