@@ -2,15 +2,44 @@
 
 ## Overview
 
+## Architecture
+
+### Core Modules
+
+```
+src/
+├── components/       # Reusable UI components
+├── logical_components/ # Complex logic components
+├── theme/           # Theme configuration
+├── hooks/           # Custom React hooks
+├── store/           # Zustand state management
+├── provider/        # Context providers
+└── functions/       # Utility functions
+```
+
 This project is a React-based web application built with TypeScript and Material-UI. It is designed to be modular, scalable, and maintainable, featuring a responsive UI, custom hooks, and a theme system for consistent styling.
 
-## Features
+### 🎨 UI Components
 
-- **Responsive Design**: Utilizes Material-UI for a responsive and accessible user interface.
-- **TypeScript**: Provides type safety and improved code maintainability.
-- **Custom Hooks**: Includes custom hooks for handling specific logic.
-- **Theming**: Supports a theme system for consistent styling across the application.
-- **State Management**: Uses Zustand for lightweight state management.
+- Pre-built, accessible Material-UI components
+- Responsive design patterns
+- Customizable card variants
+- Navigation components (Breadcrumb, TabBar)
+- Modal and dialog systems
+
+### 🛠 Development Tools
+
+- **TypeScript Support** - Full type safety and enhanced IDE integration
+- **Custom Hooks** - Reusable logic for common patterns
+- **State Management** - Integrated Zustand store
+- **Utility Functions** - Common helpers for URLs, storage, and more
+
+### 🎯 Architecture
+
+- **Modular Design** - Independent, composable components
+- **Scalable Structure** - Organized for large applications
+- **Theme System** - Customizable design tokens
+- **Provider System** - Context-based configuration
 
 ## Getting Started
 
@@ -19,27 +48,19 @@ This project is a React-based web application built with TypeScript and Material
 - Node.js (version 14 or later)
 - npm or yarn
 
-### Installation
+### Local Setup
 
-1. Clone the repository:
+```bash
+# Clone repository
+git clone https://github.com/Mobinksiri/design_system.git
 
-   ```bash
-   git clone https://github.com/yourusername/yourproject.git
-   ```
+# Install dependencies
+cd design-system
+npm install
 
-2. Navigate to the project directory:
-
-   ```bash
-   cd yourproject
-   ```
-
-3. Install the dependencies:
-
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+# Start development server
+npm start
+```
 
 ### Running the Application
 
@@ -138,7 +159,9 @@ export * from "./logical_components";
 Update package.json
 
 ```json:package.json
-"version": "0.0.1"
+{
+  "version": "x.x.x"
+}
 ```
 
 To create a .tgz package, run the following command:
@@ -152,9 +175,9 @@ npm run pack
 To use the package in another project, install it using npm or yarn:
 
 ```bash
-npm install path/to/the/design_system-0.0.1.tgz
+npm install path/to/the/design_system-x.x.x.tgz
 # or
-yarn add path/to/the/design_system-0.0.1.tgz
+yarn add path/to/the/design_system-x.x.x.tgz
 ```
 
 #### Importing Components
@@ -162,9 +185,13 @@ yarn add path/to/the/design_system-0.0.1.tgz
 After installing the package, you can import and use the components like this:
 
 ```typescript
-import { Button } from "design_system";
+import { BreadCrumb } from "design_system";
 ```
 
 ## Contributing
 
-Contributions are welcome! Please fork the repository and submit a pull request for any improvements or bug fixes.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
