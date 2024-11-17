@@ -30,13 +30,13 @@
 
 ```
 src/
-├── components/       # Reusable UI components
-├── logical_components/ # Complex logic components
-├── theme/           # Theme configuration
-├── hooks/           # Custom React hooks
-├── store/           # Zustand state management
-├── provider/        # Context providers
-└── functions/       # Utility functions
+├── components/           # Reusable UI components
+├── logical_components/   # Complex logic components
+├── theme/                # Theme configuration
+├── hooks/                # Custom React hooks
+├── store/                # Zustand state management
+├── provider/             # Context providers
+└── functions/            # Utility functions
 ```
 
 This project is a React-based web application built with TypeScript and Material-UI. It is designed to be modular, scalable, and maintainable, featuring a responsive UI, custom hooks, and a theme system for consistent styling.
