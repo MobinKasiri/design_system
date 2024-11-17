@@ -275,6 +275,17 @@ After installing the package, you can import and use the components like this:
 
 ```typescript
 import { BreadCrumb } from "design_system";
+
+const array = [
+  { title: "Home", href: "/" },
+  { title: "Categories", href: "/categories" },
+  { title: "Products", href: "/categories/products" },
+  { title: "Details", href: "/categories/products/details" },
+];
+
+const Home = () => {
+  return <BreadCrumb array={array} />;
+};
 ```
 
 ## Contributing
