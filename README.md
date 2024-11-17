@@ -1,4 +1,4 @@
-# Project Name
+# Design System
 
 ## Overview
 
@@ -84,6 +84,86 @@ The application will be available at `http://localhost:3000`.
 - **colors/**: Defines color palettes used throughout the application.
 
 - **declare_modules.d.ts**: TypeScript declaration file for extending Material-UI types.
+
+### Important Files
+
+- **`src/theme/theme.tsx`**: Configures the application's theme, including palette, typography, and component overrides.
+
+  - Code Reference:
+    ```typescript:src/theme/theme.tsx
+    startLine: 1
+    endLine: 42
+    ```
+
+- **`src/declare_modules.d.ts`**: TypeScript declaration file for extending Material-UI types.
+
+  - Code Reference:
+
+    ```typescript:src/declare_modules.d.ts
+    startLine: 1
+    endLine: 66
+    ```
+
+- **`src/index.ts`**: Main entry point for exporting all modules.
+
+  - Code Reference:
+    ```typescript:src/index.ts
+    startLine: 1
+    endLine: 8
+    ```
+
+### Creating and Using the Package
+
+This guide explains how to create a .tgz package from this project and use it in other projects.
+
+#### Package Structure
+
+The project exports various components and utilities through its main entry point:
+
+```typescript:src/index.ts
+export * from "./components";
+export * from "./theme";
+export * from "./functions";
+export * from "./hooks";
+export * from "./patterns";
+export * from "./store";
+export * from "./provider";
+export * from "./logical_components";
+```
+
+#### Creating the Package
+
+<!-- change version number -->
+
+Update package.json
+
+```json:package.json
+"version": "0.0.1"
+```
+
+To create a .tgz package, run the following command:
+
+```bash
+npm run pack
+```
+
+#### Using the Package
+
+To use the package in another project, install it using npm or yarn:
+
+```bash
+npm install path/to/the/design_system-0.0.1.tgz
+# or
+yarn add path/to/the/design_system-0.0.1.tgz
+```
+
+#### Importing Components
+
+After installing the package, you can import and use the components like this:
+
+```typescript
+import { Button } from "design_system";
+```
 
 ## Contributing
 
