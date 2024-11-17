@@ -111,46 +111,66 @@ The application will be available at `http://localhost:3000`.
 - **`src/theme/theme.tsx`**: Configures the application's theme, including palette, typography, and component overrides.
 
   - Code Reference:
+
     ```typescript:src/theme/theme.tsx
-    startLine: 1
-    endLine: 42
+    const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
+      const theme = createTheme({
+      breakpoints,
+    });
+    const returnValue: ThemeOptions = {
+      palette: { ...paletteOptions[mode] },
+      typography: typography(theme),
+      breakpoints,
+      components: {
+         MuiButton,
+         MuiCard,
+         MuiCardMedia,
+         MuiCardContent,
+         MuiCardActions,
+         MuiLink,
+         MuiContainer: MuiContainer(theme),
+         MuiMenuItem,
+         MuiTextField,
+         MuiMenu: MuiMenu(theme),
+      },
+      shadows: customShadows(theme),
+    };
+    return returnValue;
+    };
+    const theme = (mode: PaletteMode): ThemeOptions =>
+      createTheme(getDesignTokens(mode));
     ```
 
 - **`src/declare_modules.d.ts`**: TypeScript declaration file for extending Material-UI types.
 
-  - Code Reference:
+  - for example:
 
     ```typescript:src/declare_modules.d.ts
-    startLine: 1
-    endLine: 66
+    declare module "@mui/material/Button" {
+      interface ButtonPropsColorOverrides {
+        gray: true;
+        pink: true;
+      }
+    }
     ```
 
 - **`src/index.ts`**: Main entry point for exporting all modules.
 
   - Code Reference:
     ```typescript:src/index.ts
-    startLine: 1
-    endLine: 8
+    export * from "./components";
+    export * from "./theme";
+    export * from "./functions";
+    export * from "./hooks";
+    export * from "./patterns";
+    export * from "./store";
+    export * from "./provider";
+    export * from "./logical_components";
     ```
 
 ### Creating and Using the Package
 
 This guide explains how to create a .tgz package from this project and use it in other projects.
-
-#### Package Structure
-
-The project exports various components and utilities through its main entry point:
-
-```typescript:src/index.ts
-export * from "./components";
-export * from "./theme";
-export * from "./functions";
-export * from "./hooks";
-export * from "./patterns";
-export * from "./store";
-export * from "./provider";
-export * from "./logical_components";
-```
 
 #### Creating the Package
 
