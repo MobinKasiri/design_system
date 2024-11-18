@@ -12,7 +12,7 @@ const style = {
   "@keyframes scaleIn": {
     "0%": {
       opacity: 0,
-      transform: "translate(-50%, -50%) scale(0.9)",
+      transform: "translate(-50%, -50%) scale(0.85)",
     },
     "100%": {
       opacity: 1,
@@ -27,11 +27,6 @@ const Modal = ({ open, children, ...rest }: ModalProps) => {
       <MuiModal
         closeAfterTransition
         slots={{ backdrop: Backdrop }}
-        slotProps={{
-          backdrop: {
-            timeout: 500,
-          },
-        }}
         open={open}
         {...rest}
       >
