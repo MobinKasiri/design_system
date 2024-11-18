@@ -32,6 +32,7 @@ export interface SidebarItemProps extends CommonProps {
 
 export interface SidebarProps extends CommonProps {
   routes: SidebarItem[];
+  loading?: boolean;
 }
 
 const SidebarItem = ({ route, navigate, pathname }: SidebarItemProps) => {
@@ -165,7 +166,7 @@ const SkeletonComponent = () => {
   );
 };
 
-const SideBar = ({ routes, navigate, pathname }: SidebarProps) => {
+const SideBar = ({ routes, navigate, pathname, loading }: SidebarProps) => {
   return (
     <ThemeRegistry>
       <List
@@ -175,19 +176,18 @@ const SideBar = ({ routes, navigate, pathname }: SidebarProps) => {
         component="nav"
         aria-labelledby="nested-list-subheader"
       >
-        {routes?.length ? (
-          routes.map((route) => (
-            <Box key={route.id}>
-              <SidebarItem
-                navigate={navigate}
-                pathname={pathname}
-                route={route}
-              />
-            </Box>
-          ))
-        ) : (
-          <SkeletonComponent />
-        )}
+        {loading ? <SkeletonComponent /> : null}
+        {routes?.length
+          ? routes.map((route) => (
+              <Box key={route.id}>
+                <SidebarItem
+                  navigate={navigate}
+                  pathname={pathname}
+                  route={route}
+                />
+              </Box>
+            ))
+          : null}
       </List>
     </ThemeRegistry>
   );
