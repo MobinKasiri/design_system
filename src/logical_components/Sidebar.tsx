@@ -159,8 +159,8 @@ const SkeletonItem = () => {
 const SkeletonComponent = () => {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2, p: 2.5 }}>
-      {Array.from(Array(10)).map(() => (
-        <SkeletonItem />
+      {Array.from(Array(10)).map((_, index) => (
+        <SkeletonItem key={index} />
       ))}
     </Box>
   );
@@ -176,7 +176,7 @@ const SideBar = ({ routes, navigate, pathname, loading }: SidebarProps) => {
         component="nav"
         aria-labelledby="nested-list-subheader"
       >
-        {loading ? <SkeletonComponent /> : null}
+        {loading || routes?.length == 0 ? <SkeletonComponent /> : null}
         {routes?.length
           ? routes.map((route) => (
               <Box key={route.id}>
