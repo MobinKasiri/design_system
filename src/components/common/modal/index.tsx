@@ -1,7 +1,6 @@
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import MuiModal, { ModalProps } from "@mui/material/Modal";
-import Fade from "@mui/material/Fade";
 import { ThemeRegistry } from "../../../provider";
 
 const style = {
@@ -9,6 +8,17 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
+  animation: "scaleIn 0.25s cubic-bezier(0.175, 0.885, 0.15, 1.275)",
+  "@keyframes scaleIn": {
+    "0%": {
+      opacity: 0,
+      transform: "translate(-50%, -50%) scale(0.9)",
+    },
+    "100%": {
+      opacity: 1,
+      transform: "translate(-50%, -50%) scale(1)",
+    },
+  },
 };
 
 const Modal = ({ open, children, ...rest }: ModalProps) => {
@@ -25,9 +35,7 @@ const Modal = ({ open, children, ...rest }: ModalProps) => {
         open={open}
         {...rest}
       >
-        <Fade in={open}>
-          <Box sx={style}>{children}</Box>
-        </Fade>
+        <Box sx={style}>{children}</Box>
       </MuiModal>
     </ThemeRegistry>
   );
