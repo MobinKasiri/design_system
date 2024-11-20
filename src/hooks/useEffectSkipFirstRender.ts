@@ -1,16 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { DependencyList, useEffect, useState } from "react";
+import { DependencyList, useEffect, useRef } from "react";
 
 const useEffectSkipFirstRender = (
   callBack: () => void,
   dependencies: DependencyList
 ) => {
-  const [count, setCount] = useState(0);
+  const isFirstRender = useRef(true);
+
   useEffect(() => {
-    if (count > 0) {
-      callBack();
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
     }
-    setCount((s) => (s = s + 1));
+    callBack();
   }, dependencies);
 };
 
