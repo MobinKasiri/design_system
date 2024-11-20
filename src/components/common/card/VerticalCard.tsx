@@ -41,7 +41,7 @@ const VerticalCard = ({
                 loading="lazy"
                 fill
                 className="card__placeholder "
-                style={{ borderRadius: "16px" }}
+                style={{ borderRadius: "16px", width: "100%" }}
                 src={media}
                 alt={title ?? ""}
               />
