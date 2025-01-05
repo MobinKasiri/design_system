@@ -74,7 +74,7 @@ This project is a React-based web application built with TypeScript and Material
 
 ```bash
 # Clone repository
-git clone https://github.com/Mobinksiri/design_system.git
+git clone https://github.com/Mobinkasiri/design_system.git
 
 # Install dependencies
 cd design-system
