@@ -291,10 +291,10 @@ export default App;
 ### Adding a declare_modules.d.ts File
 To extend TypeScript declarations for custom theme configurations and third-party libraries, you need to add a declare_modules.d.ts file to the src/ folder. This file allows you to define custom types and override existing ones.
 
-##### Why This File is Important?
-1- Extends TypeScript Support: Adds type safety for custom theme configurations and third-party libraries.
-2- Autocompletion: Enables IDE autocompletion for custom properties like gray, pink, and yourColor.
-3- Consistency: Ensures consistent usage of custom types across the project.
+#### Why This File is Important?
+##### 1- Extends TypeScript Support: Adds type safety for custom theme configurations and third-party libraries.
+##### 2- Autocompletion: Enables IDE autocompletion for custom properties like gray, pink, and yourColor.
+##### 3- Consistency: Ensures consistent usage of custom types across the project.
 
 #### Importing Components
 
