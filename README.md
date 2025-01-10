@@ -10,7 +10,7 @@
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Local Setup](#local-setup)
-  - [Running the Application](#running-the-application)
+  - [Install and Use Provider](#Install-and-Use-Provider)
 - [Project Structure](#project-structure)
   - [src/ Directory](#src)
   - [Important Files](#important-files)
@@ -21,6 +21,7 @@
 - [Creating and Using the Package](#creating-and-using-the-package)
   - [Creating the Package](#creating-the-package)
   - [Using the Package](#using-the-package)
+  - [Running the Application](#running-the-application)
   - [Importing Components](#importing-components)
 - [Contributing](#contributing)
 
@@ -81,7 +82,7 @@ cd design-system
 npm install
 
 # Start development server
-npm start
+npm run dev
 ```
 
 ### Running the Application
@@ -258,7 +259,7 @@ To create a .tgz package, run the following command:
 npm run pack
 ```
 
-#### Using the Package
+## Using the Package
 
 To use the package in another project, install it using npm or yarn:
 
@@ -267,6 +268,33 @@ npm install path/to/the/design_system-x.x.x.tgz
 # or
 yarn add path/to/the/design_system-x.x.x.tgz
 ```
+
+### Install and Use Provider
+Before using components like BreadCrumb, you need to wrap your application with the ThemeRegistry. This ensures that the theme and other context providers are properly set up.
+
+#### Wrap Your App with the Provider:
+```typescript
+import React from "react";
+import { ThemeRegistry } from "design_system";
+
+const App = () => {
+  return (
+    <ThemeRegistry>
+      {/* Your application components */}
+    </ThemeRegistry>
+  );
+};
+
+export default App;
+```
+
+#### Adding a declare_modules.d.ts File
+To extend TypeScript declarations for custom theme configurations and third-party libraries, you need to add a declare_modules.d.ts file to the src/ folder. This file allows you to define custom types and override existing ones.
+
+- Why This File is Important?
+1- Extends TypeScript Support: Adds type safety for custom theme configurations and third-party libraries.
+2- Autocompletion: Enables IDE autocompletion for custom properties like gray, pink, and yourColor.
+3- Consistency: Ensures consistent usage of custom types across the project.
 
 #### Importing Components
 
